@@ -1,0 +1,17 @@
+# �������� ���������������
+RewriteEngine On
+
+# �� ��������� � ������������ ������ ������
+RewriteCond %{REQUEST_FILENAME} !-f
+
+# �� ��������� � ������������ �����������
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# �������� ���� �������� �� olspol.php
+
+# L �������� Last, ����� ����� �� ���� ����� mod_rewrite ����� ��������� ������.
+
+# ������, ��������� ���������� ������������������.
+
+#RewriteRule .* index.php [L]
+RewriteRule ^(.*)$ index.php?q=$1
