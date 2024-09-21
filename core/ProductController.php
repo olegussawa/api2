@@ -4,6 +4,12 @@
 
 class ProductController{
 
+public function __construct(private productGateway $gateway)
+{
+    
+}
+
+
     public function processrequest($method,$id=null):void
     {
         if($id){
@@ -22,7 +28,7 @@ private function ProcessResouceRequest($method,$id){
 private function ProcessCollectionRequest($method){
 switch($method){
     case "GET":
-echo json_encode(['id'=>'123']);
+echo json_encode($this->gateway->getall());
 break;
 
 }
