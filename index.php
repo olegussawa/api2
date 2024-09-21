@@ -1,19 +1,26 @@
 <?php
-
-
 //включаем режим строгой типизации
 declare(strict_types=1);
+
+header('Content-type:application/json;charset=UTF-8');
 
 //включаем автозагрузку
 spl_autoload_register(function($class){
     require __DIR__."/core/$class.php";
 });
 
-header('Content-type:application/json;charset=UTF-8');
+//вызываем обработчик ошибок
+set_exception_handler("errorHandler::error");
+
+
 
 //разбиваем адрес
 $parts=explode('/',$_SERVER['REQUEST_URI']);
 
+
+//подключаемся к базе данных
+$database=new Database;
+$database->getconnection();
 
 
 //если в адресе не products выводим ошибку страница не найдена
