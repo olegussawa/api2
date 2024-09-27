@@ -23,6 +23,28 @@ $art['data']=$arr;
 return $art;
 }
 
+public function create($data)
+{
+
+    
+
+    $sth = $this->conn->prepare("INSERT INTO `продукты` SET `name` = :name, `price` = :price, `number`= :number");
+    //clean data
+   
+    // $data->name=htmlspecialchars(strip_tags($data->name));
+    // $data->price=htmlspecialchars(strip_tags($data->price));
+    // $data->number=htmlspecialchars(strip_tags($data->number));
+
+    if($sth->execute(['name'=>$data->name, 'price'=>$data->price,'number'=>$data->number])){
+
+        return $this->conn->lastInsertId();
+        
+    }
+    
+return false;
+}
+
+
 }
 
 

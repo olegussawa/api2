@@ -10,6 +10,7 @@ spl_autoload_register(function($class){
 });
 
 //вызываем обработчик ошибок
+//set_error_handler("errorHandler::handle_error");
 set_exception_handler("errorHandler::error");
 
 
@@ -38,6 +39,7 @@ $gateway=new ProductGateway($database);
 //вызываем контроллер
 $controller=new ProductController($gateway);
 $controller->processrequest($_SERVER['REQUEST_METHOD'],$id);
+
 
 
 

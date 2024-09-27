@@ -14,7 +14,14 @@ public static function error(Throwable $exception){
     ]);
 }
 
+public static function handle_error(int $errno,string $errstr,string $errfile,int $errline){
+    http_response_code(505);
+    echo json_encode([
+        
+    ]);
 
+    throw new ErrorException($errstr,0,$errno,$errfile,$errline);
+}
 
 }
 
