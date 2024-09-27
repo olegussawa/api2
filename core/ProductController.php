@@ -23,7 +23,24 @@ $this->ProcessResouceRequest($method,$id);
 
 private function ProcessResouceRequest($method,$id){
 
+$product=$this->gateway->getone($id);
+//проверим если нет продукта с этим номером выходим из функции с 404
+if(!$product){
+    http_response_code(404);
+    echo json_encode(['message'=>'product not found']);
+    return;
 }
+
+switch($method){
+    case "GET":
+        echo json_encode($product);
+break;
+
+
+}
+}
+
+
 
 private function ProcessCollectionRequest($method){
 switch($method){
@@ -58,6 +75,8 @@ if(!empty($err)){
    ]);
    
    break;
+   default:http_response_code(405);
+   header("Allow: GET,POST");
 }
 
 

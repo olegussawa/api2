@@ -26,7 +26,7 @@ return $art;
 public function create($data)
 {
 
-    
+
 
     $sth = $this->conn->prepare("INSERT INTO `продукты` SET `name` = :name, `price` = :price, `number`= :number");
     //clean data
@@ -42,6 +42,15 @@ public function create($data)
     }
     
 return false;
+}
+
+public function getone($id): array | false
+{
+    $sth = $this->conn->prepare("SELECT * FROM `продукты` WHERE `id` = :id");
+    $sth->execute(['id'=>$id]);
+    //$sth->execute(['id'=>3]);
+    $arr = $sth->fetch(PDO::FETCH_ASSOC);
+    return $arr;
 }
 
 
